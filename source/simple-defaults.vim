@@ -46,8 +46,6 @@ set sessionoptions-=options
 let mapleader = ' '
 set backspace=2
 set scrolloff=5
-set complete-=t
-set complete-=i
 set mouse=a
 set splitbelow
 set path+=**
