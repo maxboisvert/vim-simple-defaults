@@ -14,6 +14,15 @@ let g:vsd_leader = get(g:, 'vsd_leader', ' ')
 
 " defaults
 
+if g:vsd_plugins == 1
+    " vim-plug
+    if empty(glob('~/.vim/autoload/plug.vim'))
+        silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+                    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        autocmd VimEnter * PlugInstall | source $MYVIMRC
+    endif
+endif
+
 fun! VsdPlugins()
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'vim-scripts/gitignore'
@@ -26,19 +35,6 @@ fun! VsdPlugins()
 endfun
 
 fun! Vsd()
-    if g:vsd_plugins == 1
-        " vim-plug
-        if empty(glob('~/.vim/autoload/plug.vim'))
-          silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-            \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-          autocmd VimEnter * PlugInstall | source $MYVIMRC
-        endif
-
-        " default plugins
-        "call plug#begin()
-        "call plug#end()
-    endif
-
     if g:vsd_options == 1
         filetype plugin indent on
         syntax on
@@ -133,7 +129,6 @@ fun! Vsd()
         match ExtraWhitespace /\s\+\%#\@<!$/
     endif
 
-
     if g:vsd_plugins == 1
         " gitignore
         autocmd VimEnter * silent! WildignoreFromGitignore
@@ -173,4 +168,3 @@ fun! Vsd()
         endif
     endif
 endfun
-
