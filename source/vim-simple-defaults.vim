@@ -14,16 +14,7 @@ let g:vsd_leader = get(g:, 'vsd_leader', ' ')
 
 " defaults
 
-if g:vsd_plugins == 1
-    " vim-plug
-    if empty(glob('~/.vim/autoload/plug.vim'))
-      silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-      autocmd VimEnter * PlugInstall | source $MYVIMRC
-    endif
-
-    " default plugins
-    call plug#begin()
+fun! VsdPlugins()
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'vim-scripts/gitignore'
     Plug 'jiangmiao/auto-pairs'
@@ -32,139 +23,154 @@ if g:vsd_plugins == 1
     Plug 'scrooloose/nerdtree'
     Plug 'scrooloose/nerdcommenter'
     Plug 'kassio/neoterm'
-    call plug#end()
-endif
+endfun
 
-if g:vsd_options == 1
-    filetype plugin indent on
-    syntax on
+fun! Vsd()
+    if g:vsd_plugins == 1
+        " vim-plug
+        if empty(glob('~/.vim/autoload/plug.vim'))
+          silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+            \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+          autocmd VimEnter * PlugInstall | source $MYVIMRC
+        endif
 
-    " indent
-    let &shiftwidth=g:vsd_tab_length
-    let &softtabstop=g:vsd_tab_length
-    let &tabstop=g:vsd_tab_length
-    set autoindent
-    set expandtab
-
-    " wrap
-    let &showbreak='↳ '
-    set breakindent
-    set linebreak
-    set wrap
-
-    " search
-    set ignorecase
-    set incsearch
-    set smartcase
-
-    " backup
-    set nobackup
-    set noswapfile
-    set nowritebackup
-
-    " statusline
-    set laststatus=0
-    set ruler
-    set showmode
-    set wildmenu
-
-    " buffer
-    set autoread
-    set hidden
-    set encoding=utf-8
-
-    " state
-    set viminfo^=%
-    set undolevels=1000
-    set history=1000
-    set clipboard+=unnamedplus
-    set sessionoptions-=options
-
-    " behavior
-    let mapleader = g:vsd_leader
-    set backspace=2
-    set mouse=a
-    set complete-=i
-    set scrolloff=5
-    set splitbelow
-    set path+=**
-
-    " theme
-    set background=dark
-    let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-    "set termguicolors
-
-    " faster display
-    set lazyredraw
-    set ttyfast
-
-    " bell
-    set visualbell
-    set t_vb=
-endif
-
-if g:vsd_mappings == 1
-    nnoremap <Tab> :b#<CR>
-    map <Backspace> :nohlsearch<cr>
-    map <expr> <Enter> &filetype == "qf" ? "\<CR>" : ":"
-
-    nnoremap j gj
-    nnoremap k gk
-
-    if has('nvim')
-        tnoremap <Esc> <C-\><C-n>
+        " default plugins
+        "call plug#begin()
+        "call plug#end()
     endif
-endif
 
-if g:vsd_commands == 1
-    command Bd :bp | :bd #
-endif
+    if g:vsd_options == 1
+        filetype plugin indent on
+        syntax on
 
-if g:vsd_autocommands == 1
-    autocmd BufEnter * silent! normal! g`"
-endif
+        " indent
+        let &shiftwidth=g:vsd_tab_length
+        let &softtabstop=g:vsd_tab_length
+        let &tabstop=g:vsd_tab_length
+        set autoindent
+        set expandtab
 
-if g:vsd_trailing_whitespace == 1
-    highlight ExtraWhitespace ctermbg=red guibg=red
-    match ExtraWhitespace /\s\+\%#\@<!$/
-endif
+        " wrap
+        let &showbreak='↳ '
+        set breakindent
+        set linebreak
+        set wrap
 
+        " search
+        set ignorecase
+        set incsearch
+        set smartcase
 
-if g:vsd_plugins == 1
-    " gitignore
-    autocmd VimEnter * silent! WildignoreFromGitignore
+        " backup
+        set nobackup
+        set noswapfile
+        set nowritebackup
 
-    " plugins configuration
-    " ctrlp (F5 to clear cache)
-    let g:ctrlp_mruf_exclude = '.*/tmp/.*\|.*/.git/.*'
-    let g:ctrlp_max_files = 200000
-    let g:ctrlp_mruf_relative = 1
-    let g:ctrlp_map = ''
+        " statusline
+        set laststatus=0
+        set ruler
+        set showmode
+        set wildmenu
 
-    " sneak
-    let g:sneak#streak = 1
-    let g:sneak#use_ic_scs = 1
+        " buffer
+        set autoread
+        set hidden
+        set encoding=utf-8
 
-    " nerdtree
-    let g:NERDTreeMouseMode=3
-    let g:NERDTreeIgnore = ['\.pyc$']
+        " state
+        set viminfo^=%
+        set undolevels=1000
+        set history=1000
+        set clipboard+=unnamedplus
+        set sessionoptions-=options
 
-    " neoterm
-    let g:neoterm_size = 10
+        " behavior
+        let mapleader = g:vsd_leader
+        set backspace=2
+        set mouse=a
+        set complete-=i
+        set scrolloff=5
+        set splitbelow
+        set path+=**
 
-    " nerdtree
-    let g:NERDTreeMouseMode=3
-    let g:NERDTreeIgnore = ['\.pyc$']
+        " theme
+        set background=dark
+        let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+        "set termguicolors
 
-    " neoterm
-    let g:neoterm_size = 10
+        " faster display
+        set lazyredraw
+        set ttyfast
+
+        " bell
+        set visualbell
+        set t_vb=
+    endif
 
     if g:vsd_mappings == 1
-        nnoremap <Leader>p :CtrlPMRUFiles<CR>
-        nnoremap <Leader>o :CtrlP<CR>
-        nnoremap <Leader>l :CtrlPLine<CR>
+        nnoremap <Tab> :b#<CR>
+        map <Backspace> :nohlsearch<cr>
+        map <expr> <Enter> &filetype == "qf" ? "\<CR>" : ":"
 
-        map <Leader>/ :call NERDComment(0,"toggle")<CR>
-        nnoremap <Leader>\ :NERDTreeToggle<CR>
+        nnoremap j gj
+        nnoremap k gk
+
+        if has('nvim')
+            tnoremap <Esc> <C-\><C-n>
+        endif
     endif
-endif
+
+    if g:vsd_commands == 1
+        command Bd :bp | :bd #
+    endif
+
+    if g:vsd_autocommands == 1
+        autocmd BufEnter * silent! normal! g`"
+    endif
+
+    if g:vsd_trailing_whitespace == 1
+        highlight ExtraWhitespace ctermbg=red guibg=red
+        match ExtraWhitespace /\s\+\%#\@<!$/
+    endif
+
+
+    if g:vsd_plugins == 1
+        " gitignore
+        autocmd VimEnter * silent! WildignoreFromGitignore
+
+        " plugins configuration
+        " ctrlp (F5 to clear cache)
+        let g:ctrlp_mruf_exclude = '.*/tmp/.*\|.*/.git/.*'
+        let g:ctrlp_max_files = 200000
+        let g:ctrlp_mruf_relative = 1
+        let g:ctrlp_map = ''
+
+        " sneak
+        let g:sneak#streak = 1
+        let g:sneak#use_ic_scs = 1
+
+        " nerdtree
+        let g:NERDTreeMouseMode=3
+        let g:NERDTreeIgnore = ['\.pyc$']
+
+        " neoterm
+        let g:neoterm_size = 10
+
+        " nerdtree
+        let g:NERDTreeMouseMode=3
+        let g:NERDTreeIgnore = ['\.pyc$']
+
+        " neoterm
+        let g:neoterm_size = 10
+
+        if g:vsd_mappings == 1
+            nnoremap <Leader>p :CtrlPMRUFiles<CR>
+            nnoremap <Leader>o :CtrlP<CR>
+            nnoremap <Leader>l :CtrlPLine<CR>
+
+            map <Leader>/ :call NERDComment(0,"toggle")<CR>
+            nnoremap <Leader>\ :NERDTreeToggle<CR>
+        endif
+    endif
+endfun
+
