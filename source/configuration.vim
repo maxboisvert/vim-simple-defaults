@@ -1,5 +1,4 @@
 " vim-simple-defaults
-" maxboisvert.com
 
 " init
 
