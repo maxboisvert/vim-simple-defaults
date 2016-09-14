@@ -188,6 +188,8 @@ fun! VsdConfiguration()
     endif
 
     if g:vsd_ruby == 1
+        autocmd BufNewFile,BufRead Gemfile,Vagrantfile,Guardfile set filetype=ruby
+
         command RubocopAll execute ':T bundle exec rubocop'
         command RubocopFile execute ':T bundle exec rubocop %'
 
