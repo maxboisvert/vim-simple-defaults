@@ -6,7 +6,7 @@ This is a light distribution to get started with vim. It includes defaults plugi
 
 ### Plugins
 
-With vim-plug : 
+With vim-plug :
 ```
 call plug#begin()
 Plug 'maxboisvert/vim-simple-defaults'
@@ -45,4 +45,4 @@ let g:vsd_leader = ' '
 
 ### Commands
 
-## Mappings
+### Mappings
