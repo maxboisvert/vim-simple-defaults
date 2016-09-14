@@ -26,14 +26,15 @@ fun! VsdPlugins()
 endfun
 
 fun! VsdConfiguration()
-    let g:vsd_tab_length = get(g:, 'vsd_tab_length', 4)
     let g:vsd_options = get(g:, 'vsd_options', 1)
     let g:vsd_trailing_whitespace = get(g:, 'vsd_trailing_whitespace', 1)
     let g:vsd_autocommands = get(g:, 'vsd_autocommands', 1)
     let g:vsd_commands = get(g:, 'vsd_commands', 1)
     let g:vsd_mappings = get(g:, 'vsd_mappings', 1)
+
+    let g:vsd_tab_length = get(g:, 'vsd_tab_length', 4)
     let g:vsd_leader = get(g:, 'vsd_leader', ' ')
-    let g:vsd_plugins_loaded = get(g:, 'vsd_plugins_loaded', 0)
+
     let g:vsd_ag = get(g:, 'vsd_ag', 0)
     let g:vsd_ruby = get(g:, 'vsd_ruby', 0)
     let g:vsd_go = get(g:, 'vsd_go', 0)
@@ -137,7 +138,7 @@ fun! VsdConfiguration()
         match ExtraWhitespace /\s\+\%#\@<!$/
     endif
 
-    if g:vsd_plugins_loaded == 1
+    if exists("g:vsd_plugins_loaded")
         " gitignore
         autocmd VimEnter * silent! WildignoreFromGitignore
 
