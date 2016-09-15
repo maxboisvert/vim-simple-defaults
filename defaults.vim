@@ -2,10 +2,6 @@
 
 " init
 
-if exists("g:vsd_vimrc_loaded")
-  finish
-endif
-
 if exists("g:loaded_vim_simple_defaults")
   finish
 endif
@@ -23,6 +19,7 @@ fun! VsdPlugins()
     Plug 'scrooloose/nerdtree'
     Plug 'scrooloose/nerdcommenter'
     Plug 'kassio/neoterm'
+    Plug 'kchmck/vim-coffee-script'
 endfun
 
 fun! VsdConfiguration()
@@ -35,10 +32,12 @@ fun! VsdConfiguration()
     let g:vsd_tab_length = get(g:, 'vsd_tab_length', 4)
     let g:vsd_leader = get(g:, 'vsd_leader', ' ')
 
-    let g:vsd_ag = get(g:, 'vsd_ag', 0)
-    let g:vsd_ruby = get(g:, 'vsd_ruby', 0)
-    let g:vsd_go = get(g:, 'vsd_go', 0)
-    let g:vsd_git = get(g:, 'vsd_git', 0)
+    let g:vsd_all = get(g:, 'vsd_all', 0)
+
+    let g:vsd_ag = get(g:, 'vsd_ag', 0 || g:vsd_all)
+    let g:vsd_ruby = get(g:, 'vsd_ruby', 0 || g:vsd_all)
+    let g:vsd_go = get(g:, 'vsd_go', 0 || g:vsd_all)
+    let g:vsd_git = get(g:, 'vsd_git', 0 || g:vsd_all)
 
     if g:vsd_options == 1
         filetype plugin indent on
@@ -109,14 +108,13 @@ fun! VsdConfiguration()
     endif
 
     if g:vsd_mappings == 1
-        nnoremap  <Tab> :b#<CR>
-        nnoremap  <Leader>f :let @+ = expand("%")<CR>
-        nnoremap  <Leader>r @:
-        nnoremap <Leader>w :wincmd w<CR>
+        nnoremap <expr> <Tab> winnr('$') > 1 ? ":wincmd w\<CR>" : ":b#\<CR>"
+        nnoremap <Leader>f :let @+ = expand("%")<CR>
+        nnoremap <Leader>r @:
         nnoremap j gj
         nnoremap k gk
+        nnoremap <Backspace> :nohlsearch<cr>
 
-        map <Backspace> :nohlsearch<cr>
         map <expr> <Enter> &filetype == "qf" ? "\<CR>" : ":"
 
         if has('nvim')
@@ -148,7 +146,7 @@ fun! VsdConfiguration()
         let g:ctrlp_clear_cache_on_exit = 0
         let g:ctrlp_max_files = 200000
         let g:ctrlp_mruf_relative = 1
-        let g:ctrlp_map = ''
+        "let g:ctrlp_map = ''
 
         " nerdtree
         let g:NERDTreeMouseMode=3
@@ -156,10 +154,6 @@ fun! VsdConfiguration()
 
         " neoterm
         let g:neoterm_size = 10
-
-        " nerdtree
-        let g:NERDTreeMouseMode=3
-        let g:NERDTreeIgnore = ['\.pyc$']
 
         " sneak
         let g:sneak#streak = 1
@@ -170,7 +164,7 @@ fun! VsdConfiguration()
             nnoremap <Leader>p :CtrlP<CR>
             nnoremap <Leader>l :CtrlPLine<CR>
 
-            map <Leader>/ :call NERDComment(0,"toggle")<CR>
+            nnoremap <Leader>/ :call NERDComment(0,"toggle")<CR>
             nnoremap <Leader>\ :NERDTreeToggle<CR>
         endif
     endif
@@ -178,7 +172,7 @@ fun! VsdConfiguration()
     if g:vsd_ag == 1
         " ag : for ctrlp, grep and copen
         if executable('ag')
-            let &grepprg = 'ag --nogroup --nocolor'
+            let &grepprg = 'ag --vimgrep'
             let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
             let g:ctrlp_clear_cache_on_exit = 1
         endif
