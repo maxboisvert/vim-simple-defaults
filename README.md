@@ -1,13 +1,17 @@
 # Vim simple defaults
 This is a light distribution to get started with vim. It includes defaults plugins and configuration.
+
 ## Insatallation
 With Vim-plug :
+
 ```
 silent! source $HOME/.vim/plugged/vim-simple-defaults/defaults.vim
+
 call plug#begin()
 Plug 'maxboisvert/vim-simple-defaults'
 silent! call VsdPlugins()
 call plug#end()
+
 silent! call VsdConfiguration()
 ```
 ## Included plugins
