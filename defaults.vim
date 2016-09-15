@@ -1,6 +1,19 @@
-" vim-simple-defaults
-
-" init
+"! # Vim simple defaults
+"! This is a light distribution to get started with vim. It includes defaults plugins and configuration.
+"!
+"! ## Insatallation
+"! With Vim-plug :
+"!
+"! ```
+"! silent! source $HOME/.vim/plugged/vim-simple-defaults/defaults.vim
+"!
+"! call plug#begin()
+"! Plug 'maxboisvert/vim-simple-defaults'
+"! silent! call VsdPlugins()
+"! call plug#end()
+"!
+"! silent! call VsdConfiguration()
+"! ```
 
 if exists("g:loaded_vim_simple_defaults")
   finish
@@ -10,34 +23,65 @@ let g:loaded_vim_simple_defaults = 1
 fun! VsdPlugins()
     let g:vsd_plugins_loaded = 1
 
+    "! ## Included plugins
+
+    "! ```
+    "! 'ctrlpvim/ctrlp.vim'
     Plug 'ctrlpvim/ctrlp.vim'
+    "! 'justinmk/vim-sneak'
     Plug 'justinmk/vim-sneak'
+    "! 'vim-scripts/gitignore'
     Plug 'vim-scripts/gitignore'
+    "! 'jiangmiao/auto-pairs'
     Plug 'jiangmiao/auto-pairs'
+    "! 'alvan/vim-closetag'
     Plug 'alvan/vim-closetag'
+    "! 'maxboisvert/vim-simple-complete'
     Plug 'maxboisvert/vim-simple-complete'
+    "! 'scrooloose/nerdtree'
     Plug 'scrooloose/nerdtree'
+    "! 'scrooloose/nerdcommenter'
     Plug 'scrooloose/nerdcommenter'
+    "! 'kassio/neoterm'
     Plug 'kassio/neoterm'
+    "! 'kchmck/vim-coffee-script'
     Plug 'kchmck/vim-coffee-script'
+    "! ```
 endfun
 
 fun! VsdConfiguration()
+    "! ## Configuration
+    "! There are the possible options with their default value :
+
+    "! ```
+    "! let g:vsd_options = 1
     let g:vsd_options = get(g:, 'vsd_options', 1)
+    "! let g:vsd_trailing_whitespace = 1
     let g:vsd_trailing_whitespace = get(g:, 'vsd_trailing_whitespace', 1)
+    "! let g:vsd_autocommands = 1
     let g:vsd_autocommands = get(g:, 'vsd_autocommands', 1)
+    "! let g:vsd_commands = 1
     let g:vsd_commands = get(g:, 'vsd_commands', 1)
+    "! let g:vsd_mappings = 1
     let g:vsd_mappings = get(g:, 'vsd_mappings', 1)
 
+    "! let g:vsd_tab_length = 4
     let g:vsd_tab_length = get(g:, 'vsd_tab_length', 4)
+    "! let g:vsd_leader = ' '
     let g:vsd_leader = get(g:, 'vsd_leader', ' ')
 
+    "! let g:vsd_all = 0 (This will enable by default the following options)
     let g:vsd_all = get(g:, 'vsd_all', 0)
 
+    "! let g:vsd_ag = 0
     let g:vsd_ag = get(g:, 'vsd_ag', 0 || g:vsd_all)
+    "! let g:vsd_ruby = 0
     let g:vsd_ruby = get(g:, 'vsd_ruby', 0 || g:vsd_all)
+    "! let g:vsd_go = 0
     let g:vsd_go = get(g:, 'vsd_go', 0 || g:vsd_all)
+    "! let g:vsd_git = 0
     let g:vsd_git = get(g:, 'vsd_git', 0 || g:vsd_all)
+    "! ```
 
     if g:vsd_options == 1
         filetype plugin indent on
@@ -164,7 +208,7 @@ fun! VsdConfiguration()
             nnoremap <Leader>p :CtrlP<CR>
             nnoremap <Leader>l :CtrlPLine<CR>
 
-            nnoremap <Leader>/ :call NERDComment(0,"toggle")<CR>
+            map <Leader>/ :call NERDComment(0,"toggle")<CR>
             nnoremap <Leader>\ :NERDTreeToggle<CR>
         endif
     endif
