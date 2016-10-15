@@ -9,7 +9,7 @@ call plug#begin()
 Plug 'maxboisvert/vim-simple-defaults'
 call plug#end()
 
-silent! source $HOME/.vim/plugged/vim-simple-defaults/defaults.vim
+runtime! plugin/vim-simple-defaults.vim
 ```
 
 ## License

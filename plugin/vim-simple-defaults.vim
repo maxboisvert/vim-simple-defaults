@@ -60,7 +60,7 @@ set scrolloff=5
 set complete-=t
 set complete-=i
 set mouse=a
-set wildignore=*.swp,*.bak,*.pyc,*.class,*.jar,*.gif,*.png,*.jpg,*.svg
+set wildignore+=*.swp,*.bak,*.pyc,*.class,*.jar,*.gif,*.png,*.jpg,*.svg
 set path+=**
 
 " theme
