@@ -58,6 +58,7 @@ let mapleader = ' '
 set backspace=2
 set scrolloff=5
 set complete-=i
+set complete-=t
 set mouse=a
 set wildignore+=*.swp,*.bak,*.pyc,*.class,*.jar,*.gif,*.png,*.jpg,*.svg
 set path+=**
