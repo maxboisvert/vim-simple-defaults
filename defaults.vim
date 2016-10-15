@@ -3,13 +3,15 @@ if exists("g:loaded_vim_simple_defaults")
 endif
 let g:loaded_vim_simple_defaults = 1
 
+let g:vsd_tab_length = get(g:, 'vsd_tab_length', 4)
+
 filetype plugin indent on
 syntax on
 
 " indent
-set shiftwidth=2
-set softtabstop=2
-set tabstop=2
+let &shiftwidth=g:vsd_tab_length
+let &softtabstop=g:vsd_tab_length
+let &tabstop=g:vsd_tab_length
 set autoindent
 set expandtab
 
@@ -45,6 +47,7 @@ set hidden
 set encoding=utf-8
 
 " state
+set viminfo^=%
 set undolevels=1000
 set history=1000
 set clipboard^=unnamedplus,unnamed
@@ -58,6 +61,7 @@ set complete-=t
 set complete-=i
 set mouse=a
 set wildignore=*.swp,*.bak,*.pyc,*.class,*.jar,*.gif,*.png,*.jpg,*.svg
+set path+=**
 
 " theme
 set background=dark
