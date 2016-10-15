@@ -75,3 +75,7 @@ set ttyfast
 " bell
 set visualbell
 set t_vb=
+
+" mappings
+nnoremap j gj
+nnoremap k gk
