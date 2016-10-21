@@ -22,10 +22,10 @@ set linebreak
 set wrap
 
 " search
+set hlsearch
 set ignorecase
 set incsearch
 set smartcase
-set hlsearch
 if executable('ag')
     let &grepprg = 'ag --vimgrep'
 endif
@@ -43,29 +43,29 @@ set wildmenu
 
 " buffer
 set autoread
-set hidden
 set encoding=utf-8
+set hidden
 
 " state
-set viminfo^=%
-set undolevels=1000
-set history=1000
 set clipboard^=unnamedplus,unnamed
+set history=1000
 set sessionoptions-=options
+set undolevels=1000
+set viminfo^=%
 
 " behavior
 let mapleader = ' '
 set backspace=2
-set scrolloff=5
 set complete-=i
 set complete-=t
 set mouse=a
-set wildignore+=*.swp,*.bak,*.pyc,*.class,*.jar,*.gif,*.png,*.jpg,*.svg
 set path+=**
+set scrolloff=5
+set wildignore+=*.swp,*.bak,*.pyc,*.class,*.jar,*.gif,*.png,*.jpg,*.svg
 
 " theme
-set background=dark
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+set background=dark
 set termguicolors
 
 " faster display
@@ -73,9 +73,13 @@ set lazyredraw
 set ttyfast
 
 " bell
-set visualbell
 set t_vb=
+set visualbell
 
 " mappings
 nnoremap j gj
 nnoremap k gk
+
+" autocommands
+autocmd BufEnter * silent! normal! g`"
+autocmd CursorHold * checktime
