@@ -51,7 +51,7 @@ set clipboard^=unnamedplus,unnamed
 set history=1000
 set sessionoptions-=options
 set undolevels=1000
-set viminfo^=%
+"set viminfo^=%
 
 " behavior
 let mapleader = ' '
