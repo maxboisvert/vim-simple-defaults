@@ -74,15 +74,6 @@ set ttyfast
 set t_vb=
 set visualbell
 
-if g:vsd_beta_options
-    let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-    set termguicolors
-
-    set iskeyword+=(,)
-    set scrolloff=5
-    set laststatus=0
-endif
-
 " mappings
 nnoremap j gj
 nnoremap k gk
@@ -90,3 +81,14 @@ nnoremap k gk
 " autocommands
 autocmd BufEnter * silent! normal! g`"
 autocmd CursorHold * checktime
+
+if g:vsd_beta_options
+    let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+    set termguicolors
+
+    set scrolloff=5
+    set laststatus=0
+
+    autocmd FileType ruby,eruby setl iskeyword+=?,!
+    autocmd FileType go setl noexpandtab
+endif
