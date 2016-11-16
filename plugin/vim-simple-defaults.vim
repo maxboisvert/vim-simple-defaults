@@ -52,7 +52,6 @@ set clipboard^=unnamedplus,unnamed
 set history=1000
 set sessionoptions-=options
 set undolevels=1000
-"set viminfo^=%
 
 " behavior
 let mapleader = ' '
@@ -80,7 +79,6 @@ nnoremap k gk
 
 " autocommands
 autocmd BufEnter * silent! normal! g`"
-autocmd CursorHold * checktime
 
 if g:vsd_beta_options
     let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
@@ -91,4 +89,5 @@ if g:vsd_beta_options
 
     autocmd FileType ruby,eruby setl iskeyword+=?,!
     autocmd FileType go setl noexpandtab
+    autocmd CursorHold * checktime
 endif
