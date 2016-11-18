@@ -5,6 +5,7 @@ let g:loaded_vim_simple_defaults = 1
 
 let g:vsd_tab_length = get(g:, 'vsd_tab_length', 4)
 let g:vsd_beta_options = get(g:, 'vsd_beta_options', 0)
+let g:vsd_ctrlp_options = get(g:, 'vsd_ctrlp_options', 0)
 
 filetype plugin indent on
 syntax on
@@ -90,4 +91,15 @@ if g:vsd_beta_options
     autocmd FileType ruby,eruby setl iskeyword+=?,!
     autocmd FileType go setl noexpandtab
     autocmd CursorHold * checktime
+endif
+
+if g:vsd_ctrlp_options
+    "let g:ctrlp_clear_cache_on_exit = 0
+    let g:ctrlp_max_files = 200000
+    let g:ctrlp_mruf_exclude = '.*/tmp/.*\|.*/.git/.*'
+    let g:ctrlp_mruf_relative = 1
+    if executable('ag')
+        let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+        let g:ctrlp_use_caching = 0
+    endif
 endif
