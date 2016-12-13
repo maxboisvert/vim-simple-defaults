@@ -56,8 +56,6 @@ set undolevels=1000
 " behavior
 let mapleader = ' '
 set backspace=2
-set complete-=i
-set complete-=t
 set mouse=a
 set path+=**
 set wildignore+=*.swp,*.bak,*.pyc,*.class,*.jar,*.gif,*.png,*.jpg,*.svg
@@ -81,6 +79,9 @@ nnoremap k gk
 autocmd BufEnter * silent! normal! g`"
 
 if g:vsd_beta_options
+    set complete-=i
+    set complete-=t
+
     let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
     set termguicolors
 
