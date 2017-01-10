@@ -91,4 +91,9 @@ if g:vsd_beta_options
     autocmd FileType ruby,eruby setl iskeyword+=?,!
     autocmd FileType go setl noexpandtab
     autocmd CursorHold * checktime
+
+    hi! link NonText LineNr
+
+    autocmd FileType java,python,vim,sh setl shiftwidth=4 tabstop=4 softtabstop=4
+    autocmd BufNewFile,BufRead Gemfile,Vagrantfile,Guardfile set filetype=ruby
 endif
