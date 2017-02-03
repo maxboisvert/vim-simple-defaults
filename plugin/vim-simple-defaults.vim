@@ -79,21 +79,23 @@ nnoremap k gk
 autocmd BufEnter * silent! normal! g`"
 
 if g:vsd_beta_options
-    set complete-=i
-    set complete-=t
-
     let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-    set termguicolors
-
-    set scrolloff=5
-    set laststatus=0
-
-    autocmd FileType ruby,eruby setl iskeyword+=?,!
-    autocmd FileType go setl noexpandtab
-    autocmd CursorHold * checktime
 
     hi! link NonText LineNr
+    hi LineNr ctermfg=darkgray
 
-    autocmd FileType java,python,vim,sh setl shiftwidth=4 tabstop=4 softtabstop=4
+    "set laststatus=0
+    "set termguicolors
+    set complete-=i
+    set complete-=t
+    set cursorline
+    set number
+    set scrolloff=5
+    set updatetime=1000
+
     autocmd BufNewFile,BufRead Gemfile,Vagrantfile,Guardfile set filetype=ruby
+    autocmd CursorHold * checktime
+    autocmd FileType go setl noexpandtab
+    autocmd FileType java,python,vim,sh setl shiftwidth=4 tabstop=4 softtabstop=4
+    autocmd FileType ruby,eruby setl iskeyword+=?,!
 endif
