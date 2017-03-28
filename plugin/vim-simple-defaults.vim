@@ -56,8 +56,8 @@ set undolevels=1000
 let mapleader = ' '
 set backspace=2
 set mouse=a
-set path+=**
 set wildignore+=*.swp,*.bak,*.pyc,*.class,*.jar,*.gif,*.png,*.jpg,*.svg
+set complete-=i
 
 " faster display
 set lazyredraw
