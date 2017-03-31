@@ -60,8 +60,8 @@ set wildignore+=*.swp,*.bak,*.pyc,*.class,*.jar,*.gif,*.png,*.jpg,*.svg
 set complete-=i
 
 " faster display
-set lazyredraw
-set ttyfast
+"set lazyredraw
+"set ttyfast
 
 " bell
 set t_vb=
@@ -72,4 +72,4 @@ nnoremap j gj
 nnoremap k gk
 
 " autocommands
-autocmd BufEnter * silent! normal! g`"
+autocmd BufReadPost * silent! normal! g`"
