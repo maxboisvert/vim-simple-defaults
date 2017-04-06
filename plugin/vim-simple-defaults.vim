@@ -31,9 +31,9 @@ if executable('ag')
 endif
 
 " backup
-set nobackup
-set noswapfile
-set nowritebackup
+"set nobackup
+"set noswapfile
+"set nowritebackup
 
 " statusline
 set laststatus=2
@@ -60,12 +60,13 @@ set wildignore+=*.swp,*.bak,*.pyc,*.class,*.jar,*.gif,*.png,*.jpg,*.svg
 set complete-=i
 
 " faster display
+set display+=lastline
 "set lazyredraw
 "set ttyfast
 
 " bell
-set t_vb=
-set visualbell
+"set t_vb=
+"set visualbell
 
 " mappings
 nnoremap j gj
