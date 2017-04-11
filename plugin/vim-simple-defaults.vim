@@ -30,11 +30,6 @@ if executable('ag')
     let &grepprg = 'ag --vimgrep'
 endif
 
-" backup
-"set nobackup
-"set noswapfile
-"set nowritebackup
-
 " statusline
 set laststatus=2
 set ruler
@@ -57,16 +52,12 @@ let mapleader = ' '
 set backspace=2
 set mouse=a
 set wildignore+=*.swp,*.bak,*.pyc,*.class,*.jar,*.gif,*.png,*.jpg,*.svg
+set wildignore+=*/vendor/*,*/node_modules/*,*/svg/*,*/fonts/*,*/images/*
 set complete-=i
+set scrolloff=5
 
-" faster display
+" display
 set display+=lastline
-"set lazyredraw
-"set ttyfast
-
-" bell
-"set t_vb=
-"set visualbell
 
 " mappings
 nnoremap j gj
