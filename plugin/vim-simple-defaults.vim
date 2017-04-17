@@ -56,6 +56,13 @@ set wildignore+=*/vendor/*,*/node_modules/*,*/svg/*,*/fonts/*,*/images/*
 set complete-=i
 set scrolloff=5
 
+" tmp
+let g:workdir = $TMPDIR . substitute(expand('%:p:h'), '/', '%', 'g') . '%'
+set backupdir=$TMPDIR//
+set directory=$TMPDIR//
+set undodir=$TMPDIR//
+let &viminfo = &viminfo . ',n' . workdir . 'viminfo'
+
 " display
 set display+=lastline
 
