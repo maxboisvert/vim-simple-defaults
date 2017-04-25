@@ -57,11 +57,13 @@ set complete-=i
 set scrolloff=5
 
 " tmp
-let g:workdir = $TMPDIR . substitute(expand('%:p:h'), '/', '%', 'g') . '%'
-set backupdir=$TMPDIR//
-set directory=$TMPDIR//
-set undodir=$TMPDIR//
+let tmp = $TMPDIR . 'vim/'
+silent! call mkdir(tmp, 'p')
+let g:workdir = tmp . substitute(expand('%:p:h'), '/', '%', 'g') . '%'
 let &viminfo = &viminfo . ',n' . workdir . 'viminfo'
+let &backupdir=tmp . '/'
+let &directory=tmp . '/'
+let &undodir=tmp . '/'
 
 " display
 set display+=lastline
