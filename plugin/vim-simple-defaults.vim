@@ -56,15 +56,6 @@ set wildignore+=*/vendor/*,*/node_modules/*,*/svg/*,*/fonts/*,*/images/*
 set complete-=i
 set scrolloff=5
 
-" tmp
-let tmp = $TMPDIR . 'vim/'
-silent! call mkdir(tmp, 'p')
-let g:workdir = tmp . substitute(expand('%:p:h'), '/', '%', 'g') . '%'
-let &viminfo = &viminfo . ',n' . workdir . 'viminfo'
-let &backupdir=tmp . '/'
-let &directory=tmp . '/'
-let &undodir=tmp . '/'
-
 " display
 set display+=lastline
 
@@ -72,5 +63,24 @@ set display+=lastline
 nnoremap j gj
 nnoremap k gk
 
+if has('nvim')
+    set inccommand=split
+endif
+
 " autocommands
 autocmd BufReadPost * silent! normal! g`"
+
+func WorkDir()
+    let tmp = $TMPDIR . 'vim/'
+    if has('nvim')
+        let tmp = $TMPDIR . 'neovim/'
+    endif
+    silent! call mkdir(tmp, 'p')
+
+    let g:tmp_file_prefix = tmp . substitute(getcwd(), '/', '%', 'g') . '%'
+    let &viminfo = &viminfo . ',n' . g:tmp_file_prefix . 'viminfo'
+    let &backupdir=tmp . '/'
+    let &directory=tmp . '/'
+    let &undodir=tmp . '/'
+endfun
+call WorkDir()
