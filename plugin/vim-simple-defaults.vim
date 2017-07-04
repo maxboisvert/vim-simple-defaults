@@ -30,7 +30,8 @@ if executable('ag')
     let &grepprg = 'ag --vimgrep'
 endif
 
-" statusline
+" display
+set display+=lastline
 set laststatus=2
 set ruler
 set showmode
@@ -50,22 +51,20 @@ set undolevels=1000
 " behavior
 let mapleader = ' '
 set backspace=2
+set complete-=i
+set completeopt-=preview
 set mouse=a
+set scrolloff=5
 set wildignore+=*.swp,*.bak,*.pyc,*.class,*.jar,*.gif,*.png,*.jpg,*.svg
 set wildignore+=*/vendor/*,*/node_modules/*,*/svg/*,*/fonts/*,*/images/*
-set complete-=i
-set scrolloff=5
-
-" display
-set display+=lastline
-
-" mappings
-nnoremap j gj
-nnoremap k gk
 
 if has('nvim')
     set inccommand=split
 endif
+
+" mappings
+nnoremap j gj
+nnoremap k gk
 
 " autocommands
 autocmd BufReadPost * silent! normal! g`"
